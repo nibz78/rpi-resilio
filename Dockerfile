@@ -16,20 +16,20 @@ RUN apt-get update
 RUN apt-get -y install \
    wget
 
-ADD https://download-cdn.resilio.com/stable/linux-arm/resilio-sync_arm.tar.gz /opt/rslsync/
+ 
+ADD ./rslsync /opt/rslsync/rslsync
 
 # Compile openresty from source.
 RUN \
   mkdir -p /opt/rslsync/bin && \
   mkdir -p /opt/rslsync/etc && \
   mkdir -p /opt/rslsync/data && \
-  cd /opt/rslsync && \
-  tar -xzvf resilio-sync_*.tar.gz && \
+  cd /opt/rslsync/ && \
   chmod +x rslsync && \
   mv rslsync bin/ && \
   ln -s /lib/arm-linux-gnueabihf/ld-linux.so.3 /lib/ld-linux.so.3
 
-WORKDIR /opt/rslsync
+WORKDIR /opt/rslsync/
 
 #VOLUME ["/opt/rslsync/etc”]
 
