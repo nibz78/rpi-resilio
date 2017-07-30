@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+
+#Resilio Rsync container
+ resilio:
+  container_name: resilio
+  image: nibz78/rpi-resilio
+  restart: always
+  ports:
+   - 8888:8888
+   - 55555:55555
+  volumes:
+   - /etc/localtime:/etc/localtime:ro
+   - resilio:/opt/rslsync/etc
+   - /var/www/html/:/var/www/html 
+
+volumes:
+ resilio:
+  external: true
+
